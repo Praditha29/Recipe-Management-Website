@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>{{recipe.title}}</title>
+
+<style>
+
+body{
+
+    background:#F4E8D0;
+
+    color:#7A5A3A;
+
+    font-family:sans-serif;
+}
+
+h1,h2{
+
+    font-family:Georgia, serif;
+}
+
+.container{
+
+    width:900px;
+
+    margin:50px auto;
+
+    background:#F8EEDC;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+.section{
+
+    margin-top:40px;
+}
+
+.btn{
+
+    background:#3C3129;
+
+    color:white;
+
+    padding:15px 30px;
+
+    border-radius:25px;
+
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>
+{{recipe.title}}
+</h1>
+
+<p>
+{{recipe.description}}
+</p>
+
+<div class="section">
+
+<h2>
+Ingredients
+</h2>
+
+<p>
+{{recipe.ingredients}}
+</p>
+
+</div>
+
+<div class="section">
+
+<h2>
+Instructions
+</h2>
+
+<p>
+{{recipe.instructions}}
+</p>
+
+</div>
+
+<br><br>
+
+<a class="btn"
+href="/">
+Back Home
+</a>
+
+</div>
+
+</body>
+</html>
