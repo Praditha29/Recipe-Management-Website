@@ -154,3 +154,84 @@ def read_recipe(recipe_id: int,
         }
     )
 
+# ==========================================
+# UPDATE RECIPE
+# ==========================================
+
+@app.get("/recipe/update/{recipe_id}")
+def update_recipe_page(
+    recipe_id: int,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+
+    recipe = db.get(Recipe, recipe_id)
+
+    if not recipe:
+        raise HTTPException(
+            status_code=404,
+            detail="Recipe not found"
+        )
+
+    return templates.TemplateResponse(
+        request=request,
+        name="update_recipe.html",
+        context={
+            "recipe": recipe
+        }
+    )
+
+@app.post("/recipe/update/{recipe_id}")
+def update_recipe(
+    recipe_id: int,
+    title: str = Form(...),
+    description: str = Form(...),
+    ingredients: str = Form(...),
+    instructions: str = Form(...),
+    db: Session = Depends(get_db)
+):
+
+    recipe = db.get(Recipe, recipe_id)
+
+    if not recipe:
+        raise HTTPException(
+            status_code=404,
+            detail="Recipe not found"
+        )
+
+    recipe.title = title
+    recipe.description = description
+    recipe.ingredients = ingredients
+    recipe.instructions = instructions
+
+    db.commit()
+
+    return RedirectResponse(
+        url=f"/recipe/{recipe_id}",
+        status_code=303
+    )
+
+# ==========================================
+# DELETE RECIPE
+# ==========================================
+@app.get("/recipe/delete/{recipe_id}")
+def delete_recipe(
+    recipe_id: int,
+    db: Session = Depends(get_db)
+):
+
+    recipe = db.get(Recipe, recipe_id)
+
+    if not recipe:
+        raise HTTPException(
+            status_code=404,
+            detail="Recipe not found"
+        )
+
+    db.delete(recipe)
+    db.commit()
+
+    return RedirectResponse(
+        url="/",
+        status_code=303
+    )

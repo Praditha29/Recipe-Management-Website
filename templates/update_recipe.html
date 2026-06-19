@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Add Recipe</title>
+
+<style>
+
+body{
+    background:#F4E8D0;
+    font-family:sans-serif;
+    color:#7A5A3A;
+}
+
+h1{
+    font-family:Georgia, serif;
+}
+
+.container{
+
+    width:700px;
+
+    margin:50px auto;
+
+    background:#F8EEDC;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    margin-bottom:25px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    font-size:16px;
+}
+
+textarea{
+    height:200px;
+}
+
+button{
+
+    background:#3C3129;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 30px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+}
+
+a{
+    color:#7A5A3A;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Add Recipe</h1>
+
+<form action="/recipe/update/{{recipe.id}}"
+method="post">
+
+<label>Recipe Picture</label>
+
+<input
+type="file"
+name="image"
+accept="image/*"
+capture="environment">
+
+<label>Title</label>
+
+<input
+type="text"
+name="title"
+value="{{recipe.title}}">
+
+<label>Description</label>
+
+<input
+type="text"
+name="description"
+value="{{recipe.description}}">
+
+<label>Ingredients</label>
+
+<textarea name="ingredients">{{recipe.ingredients}}</textarea>
+
+<label>Instructions</label>
+
+<textarea name="instructions">{{recipe.instructions}}</textarea>
+
+<button type="submit">
+Update Recipe
+</button>
+
+</form>
+
+<br><br>
+
+<a href="/">
+Back Home
+</a>
+
+</div>
+
+</body>
+</html>
