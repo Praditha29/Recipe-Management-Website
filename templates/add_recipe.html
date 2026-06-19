@@ -85,7 +85,16 @@ a{
 <h1>Add Recipe</h1>
 
 <form action="/recipe/add"
-method="post">
+      method="post"
+      enctype="multipart/form-data">
+
+<label>Recipe Picture</label>
+
+<input
+type="file"
+name="image"
+accept="image/*"
+capture="environment">
 
 <label>Title</label>
 

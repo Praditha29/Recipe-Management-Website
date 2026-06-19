@@ -99,18 +99,25 @@ def add_recipe_page(request: Request):
 
 @app.post("/recipe/add")
 def add_recipe(
-        title: str = Form(...),
-        description: str = Form(...),
-        ingredients: str = Form(...),
-        instructions: str = Form(...),
-        db: Session = Depends(get_db)
+    title: str = Form(...),
+    description: str = Form(...),
+    ingredients: str = Form(...),
+    instructions: str = Form(...),
+    image: UploadFile = File(...),
+    db: Session = Depends(get_db)
 ):
+    #For image upload 
+    file_location = f"static/uploads/{image.filename}"
+
+    with open(file_location, "wb") as buffer:
+        shutil.copyfileobj(image.file, buffer)
 
     new_recipe = Recipe(
         title=title,
         description=description,
         ingredients=ingredients,
-        instructions=instructions
+        instructions=instructions,
+        image_path=file_location
     )
 
     db.add(new_recipe)
@@ -146,3 +153,4 @@ def read_recipe(recipe_id: int,
             "recipe": recipe
         }
     )
+
