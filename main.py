@@ -368,7 +368,7 @@ def add_recipe(
     )
 
 # ==========================================
-# SINGLE RECIPE PAGE
+# VIEW SINGLE RECIPE PAGE
 # ==========================================
 
 @app.get("/recipe/{recipe_id}")
